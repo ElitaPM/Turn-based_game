@@ -1,16 +1,23 @@
 #include "soldier.h"
 
 /*
-Soldier::Soldier()
+Soldier::Soldier(string color): Unit::Unit()
 {
-
+    this->color = color;
+}
+*/
+std::string Soldier::get_color()
+{
+    return this->color;
 }
 
 
+/*
 Sniper::Sniper()
 {
 
 }
+
 
 Stormtrooper::Stormtrooper()
 {
@@ -26,4 +33,7 @@ Shotgun::Shotgun()
 {
 
 }
+
 */
+
+
