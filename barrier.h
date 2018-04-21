@@ -8,12 +8,9 @@ using namespace std;
 
 class Barrier: public Unit
 {
-private:
-    int Size;
 public:
-    Barrier(int Size): Unit(){}
-    bool is_alive();
-    vector<pair<int,int> > shape();
+    Barrier(): Unit(){}
+    bool is_alive() {};
 };
 
 #endif // BARRIER_H
