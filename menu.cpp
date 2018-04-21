@@ -36,24 +36,25 @@ void Menu::print(Field &field)
     bukafki.reserve(20);
             field.units_simbol(bukafki);
 
-
     for (int j = 0; j < 20; j++)
     {
-        for (int i= 0; i < 20; i++)
+        for (int i = 0; i < 20; i++)
         {
-            std::cout << (bukafki[j])[i] << " ";
-            if ((bukafki[j])[i] == 'Б' || (bukafki[j])[i] == 'О')
+            if ((bukafki[j])[i] == 'O' || (bukafki[j])[i] == 'B')
             {
                 this->field[1+2*j][2+4*i-1] = '|';
                 this->field[1+2*j][2+4*i] = '|';
                 this->field[1+2*j][2+4*i+1] = '|';
             }
-            else this->field[1+2*j][2+4*i] = (bukafki[j])[i];
 
+            else
+            {
+                this->field[1+2*j][2+4*i] = (bukafki[j])[i];
+            }
         }
-        std::cout << std::endl;
-    }
 
+    }
+    bukafki.clear();
 }
 
 void Menu::print()
@@ -66,3 +67,5 @@ void Menu::print()
         }
     }
 }
+
+
