@@ -6,14 +6,13 @@
 #include "soldier.h"
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
 Field::Field()
 {
 
 }
 
-void Field::units_simbol(std::vector<std::vector<char>>& vec)
+void Field::units_simbol(char** symbols)
 {
     Barrier barrier;
     WarBase base;
@@ -25,36 +24,36 @@ void Field::units_simbol(std::vector<std::vector<char>>& vec)
     {
         for (int i=0; i<20; i++)
         {
-            if (this->ptr[j][i] != NULL)
+            if (ptr[j][i] != NULL)
             {
-                if (typeid(*this->ptr[j][i]) == typeid(sniper))
+                if (typeid(*ptr[j][i]) == typeid(sniper))
                 {
-                    vec[j].push_back('S');
+                    symbols[j][i] = 'S';
                 }
-                else if (typeid(*this->ptr[j][i]) == typeid(stormtr))
+                else if (typeid(*ptr[j][i]) == typeid(stormtr))
                 {
-                    vec[j].push_back('A');
+                    symbols[j][i] ='A';
                 }
-                else if (typeid(*this->ptr[j][i]) == typeid(machinegun))
+                else if (typeid(*ptr[j][i]) == typeid(machinegun))
                 {
-                    vec[j].push_back('P');
+                    symbols[j][i] ='P';
                 }
-                else if (typeid(*this->ptr[j][i]) == typeid(gun))
+                else if (typeid(*ptr[j][i]) == typeid(gun))
                 {
-                    vec[j].push_back('G');
+                    symbols[j][i] ='G';
                 }
-                else if (typeid(*this->ptr[j][i]) == typeid(base))
+                else if (typeid(*ptr[j][i]) == typeid(base))
                 {
-                    vec[j].push_back('B');
+                    symbols[j][i] ='B';
                 }
-                else if (typeid(*this->ptr[j][i]) == typeid(barrier))
+                else if (typeid(*ptr[j][i]) == typeid(barrier))
                 {
-                    vec[j].push_back('O');
+                    symbols[j][i] ='O';
                 }
             }
             else
             {
-                vec[j].push_back(' ');
+                symbols[j][i] =' ';
             }
         }
     }
@@ -329,7 +328,15 @@ void Field::move(Unit* soldier)
     std::cout << "Введите столбец: ";
     std::cin >> temp2;
 
-    soldier->set_coord(temp1, temp2);
-    this->ptr[temp1][temp2] = soldier;
+    if(ptr[temp1 - 1][temp2 - 1] != NULL)
+        {
+            std::cout << "Некорректный ход" << std::endl;
+            move(soldier);
+        }
+
+    soldier->set_coord(temp1 - 1, temp2 - 1);
+    this->ptr[temp1 - 1][temp2 - 1] = soldier;
     this->ptr[temp.first][temp.second] = NULL;
 }
+
+

@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "unit.h"
 #include "warbase.h"
+#include <cstdlib>
 
 
 using namespace std;
@@ -21,14 +22,16 @@ int main()
     menu.print(field);
     menu.print();
 
-    cout << ptrs[0]->get_coord().first << " " << ptrs[0]->get_coord().second << endl;
+    cout << ptrs[0]->get_coord().first +1 << " " << ptrs[0]->get_coord().second + 1<< endl;
 
+
+    while(1)
+    {
     field.move(ptrs[0]);
-  //  menu.print(field);
-    field.printsuka();
+    menu.print(field);
+    cout << ptrs[0]->get_coord().first + 1<< " " << ptrs[0]->get_coord().second + 1<< endl;
     menu.print();
-
-    cout << ptrs[0]->get_coord().first << " " << ptrs[0]->get_coord().second << endl;
+    }
 
     return 0;
 

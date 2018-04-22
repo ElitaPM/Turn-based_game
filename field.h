@@ -6,6 +6,7 @@
 #include "warbase.h"
 #include <typeinfo>
 #include <vector>
+#include <iostream>
 
 class Field
 {
@@ -14,7 +15,7 @@ private:
 public:
     Field();
     void move(Unit *soldier);
-    void units_simbol(std::vector<std::vector<char> > &vec);
+    void units_simbol(char **symbols);
     void init(Unit* yellowUnit_1,
               Unit* yellowUnit_2,
               Unit* yellowUnit_3,
@@ -24,6 +25,7 @@ public:
               WarBase& blueWarBase,
               WarBase& yellowWarBase,
               Barrier& barrier);
+
 };
 
 #endif // FIELD_H

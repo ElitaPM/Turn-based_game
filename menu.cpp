@@ -12,7 +12,9 @@ Menu::Menu()
             field[2*j][i*4+3] = '-';
         }
         field [2*j][80] = '+';
-        field [2*j][81] = '\n';
+        field [2*j][81] = ' ';
+        field [2*j][82] = ' ';
+        field [2*j][83] = '\n';
 
         if (j != 20)
         {
@@ -24,7 +26,18 @@ Menu::Menu()
                 field[2*j+1][k*4+3] = ' ';
             }
             field [2*j+1][80] = '|';
-            field [2*j+1][81] = '\n';
+            if(j < 9)
+            {
+                field [2*j+1][81] = '0' + (char)(j + 1);
+                field [2*j+1][82] = ' ';
+            }
+            else
+            {
+                field [2*j+1][81] = '0' + (char)((j + 1)/10);
+                field [2*j+1][82] = '0' + (char)((j + 1)%10);
+            }
+
+            field [2*j+1][83] = '\n';
         }
 
     }
@@ -32,15 +45,19 @@ Menu::Menu()
 
 void Menu::print(Field &field)
 {
-    std::vector<std::vector<char>> bukafki;
-    bukafki.reserve(20);
-            field.units_simbol(bukafki);
+    char** symbols = new char*[20];
+    for (int j = 0; j < 20; j++)
+        {
+            symbols[j] = new char[20];
+        }
+
+    field.units_simbol(symbols);
 
     for (int j = 0; j < 20; j++)
     {
         for (int i = 0; i < 20; i++)
         {
-            if ((bukafki[j])[i] == 'O' || (bukafki[j])[i] == 'B')
+            if (symbols[j][i] == 'O' || symbols[j][i] == 'B')
             {
                 this->field[1+2*j][2+4*i-1] = '|';
                 this->field[1+2*j][2+4*i] = '|';
@@ -49,21 +66,32 @@ void Menu::print(Field &field)
 
             else
             {
-                this->field[1+2*j][2+4*i] = (bukafki[j])[i];
+                this->field[1+2*j][2+4*i] = symbols[j][i];
             }
         }
 
     }
-    bukafki.clear();
+    for (int j = 0; j < 20; j++)
+    {
+        delete[] symbols[j];
+    }
+    delete[] symbols;
+
 }
 
 void Menu::print()
 {
-    for (int j=0; j<41; j++)
+    for (int j=0; j < 20; j++)
     {
-        for (int i=0; i<82; i++)
+        std::cout << std::setw(2) << ' ';
+        std::cout << std::setw(2) << std::left << j + 1;
+    }
+    std::cout << std::endl;
+    for (int j=0; j < 41; j++)
+    {
+        for (int i=0; i < 84; i++)
         {
-            std::cout << this->field[j][i];
+            std::cout << field[j][i];
         }
     }
 }
