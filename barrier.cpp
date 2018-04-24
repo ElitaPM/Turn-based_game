@@ -1,7 +1,7 @@
 #include "barrier.h"
-/*
-Barrier::Barrier(int Size)
-{
 
-}
-*/
+//bool Barrier::is_alive()
+//{
+//    return true;
+//}
+

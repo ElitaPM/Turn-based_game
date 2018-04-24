@@ -8,8 +8,8 @@ private:
     bool Cooldown;
 public:
     WarBase(): Unit(){}
-    bool ability() {};
-    bool is_alive() {};
+    bool ability() {}
+    bool is_alive() {}
 
 };
 

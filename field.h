@@ -14,14 +14,15 @@ private:
     Unit *ptr[20][20];
 public:
     Field();
-    void move(Unit *soldier);
+    void move(Unit* soldier);
+    void shoot(Unit* soldier);
     void units_simbol(char **symbols);
-    void init(Unit* yellowUnit_1,
-              Unit* yellowUnit_2,
-              Unit* yellowUnit_3,
-              Unit* blueUnit_1,
+    void init(Unit* blueUnit_1,
               Unit* blueUnit_2,
               Unit* blueUnit_3,
+              Unit* yellowUnit_1,
+              Unit* yellowUnit_2,
+              Unit* yellowUnit_3,
               WarBase& blueWarBase,
               WarBase& yellowWarBase,
               Barrier& barrier);

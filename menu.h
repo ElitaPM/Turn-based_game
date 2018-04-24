@@ -12,6 +12,7 @@ public:
     Menu();
     void print(Field &field);
     void print();
+    void units_choise() const;
 };
 
 #endif // MENU_H

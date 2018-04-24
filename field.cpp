@@ -59,21 +59,21 @@ void Field::units_simbol(char** symbols)
     }
 }
 
-void Field::init(Unit* yellowUnit_1,
-                Unit* yellowUnit_2,
-                Unit* yellowUnit_3,
-                Unit* blueUnit_1,
-                Unit* blueUnit_2,
-                Unit* blueUnit_3,
-                WarBase& blueWarBase,
-                WarBase& yellowWarBase, Barrier &barrier)
+void Field::init(Unit* blueUnit_1,
+                 Unit* blueUnit_2,
+                 Unit* blueUnit_3,
+                 Unit* yellowUnit_1,
+                 Unit* yellowUnit_2,
+                 Unit* yellowUnit_3,
+                 WarBase& blueWarBase,
+                 WarBase& yellowWarBase, Barrier &barrier)
 {
 
     srand(time(NULL));
 
     int blueWarBaseLocation = rand()%20;
     int yellowWarBaseLocation = rand()%20;
-    pair<int , int> blueUnit_1Coord, blueUnit_2Coord, blueUnit_3Coord, yellowUnit_1Coord, yellowUnit_2Coord, yellowUnit_3Coord;
+    std::pair<int , int> blueUnit_1Coord, blueUnit_2Coord, blueUnit_3Coord, yellowUnit_1Coord, yellowUnit_2Coord, yellowUnit_3Coord;
 
 
     blueUnit_1Coord.second = rand()%3;
@@ -166,7 +166,7 @@ void Field::init(Unit* yellowUnit_1,
 
     ////////////////////////////////////////////////////////////////////////////////////
 
-    pair <int,int> barrier_1_size_3_coord,
+    std::pair <int,int> barrier_1_size_3_coord,
                    barrier_1_size_2_coord,
                    barrier_2_size_2_coord,
                    barrier_1_size_1_coord,
@@ -323,20 +323,28 @@ void Field::move(Unit* soldier)
 {
     int temp1,temp2;
     std::pair<int, int> temp = soldier->get_coord();
-    std::cout << "Введите строку: ";
-    std::cin >> temp1;
-    std::cout << "Введите столбец: ";
-    std::cin >> temp2;
 
-    if(ptr[temp1 - 1][temp2 - 1] != NULL)
+    int i = 0;
+    do
         {
-            std::cout << "Некорректный ход" << std::endl;
-            move(soldier);
+            if(i != 0)
+            {
+                std::cout << "Некорректный ход" << std::endl;
+            }
+            std::cout << "Введите строку: ";
+            std::cin >> temp1;
+            std::cout << "Введите столбец: ";
+            std::cin >> temp2;
+            i++;
         }
+    while(ptr[temp1 - 1][temp2 - 1] != NULL || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1 );
 
     soldier->set_coord(temp1 - 1, temp2 - 1);
     this->ptr[temp1 - 1][temp2 - 1] = soldier;
     this->ptr[temp.first][temp.second] = NULL;
 }
 
+void Field::shoot(Unit* soldier)
+{
 
+}

@@ -95,3 +95,29 @@ void Menu::print()
         }
     }
 }
+
+
+void Menu::units_choise() const
+{
+    std::cout << "Выберите расстановку сил: " << std::endl;
+    std::cout << "1)  3 Снайпера " << std::endl;
+    std::cout << "2)  3 Автоматчика " << std::endl;
+    std::cout << "3)  3 Пулеметчика " << std::endl;
+    std::cout << "4)  3 Дробовика " << std::endl;
+    std::cout << "5)  2 Снайпера + Автоматчик " << std::endl;
+    std::cout << "6)  2 Снайпера + Пулеметчик " << std::endl;
+    std::cout << "7)  2 Снайпера + Дробовик " << std::endl;
+    std::cout << "8)  2 Автоматчика + Снайпер " << std::endl;
+    std::cout << "9)  2 Автоматчика + Пулеметчик " << std::endl;
+    std::cout << "10) 2 Автоматчика + Дробовик " << std::endl;
+    std::cout << "11) 2 Пулеметчика + Снайпер " << std::endl;
+    std::cout << "12) 2 Пулеметчика + Автоматчик " << std::endl;
+    std::cout << "13) 2 Пулеметчика + Дробовик " << std::endl;
+    std::cout << "14) 2 Дробовика + Снайпер " << std::endl;
+    std::cout << "15) 2 Дробовика + Автоматчик " << std::endl;
+    std::cout << "16) 2 Дробовика + Пулеметчик " << std::endl;
+    std::cout << "17) Снайпер + Автоматчик + Пулеметчик " << std::endl;
+    std::cout << "18) Снайпер + Автоматчик + Дробовик " << std::endl;
+    std::cout << "19) Снайпер + Пулеметчик + Дробовик " << std::endl;
+    std::cout << "20) Автоматчик + Пулеметчик + Дробовик " << std::endl;
+}

@@ -3,11 +3,10 @@
 #include <utility>
 
 
+
 class Unit
 {
 private:
-    int HP;
-    int armor;
     std::pair <int, int> coord;
 public:
     Unit();

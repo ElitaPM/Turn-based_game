@@ -11,29 +11,28 @@ std::string Soldier::get_color()
     return this->color;
 }
 
-
-/*
-Sniper::Sniper()
+void Sniper::get_damage(int Damage)
 {
-
+    HP -= Damage;
 }
 
 
-Stormtrooper::Stormtrooper()
-{
 
-}
+//Stormtrooper::Stormtrooper()
+//{
 
-MachineGunner::MachineGunner()
-{
+//}
 
-}
+//MachineGunner::MachineGunner()
+//{
 
-Shotgun::Shotgun()
-{
+//}
 
-}
+//Shotgun::Shotgun()
+//{
 
-*/
+//}
+
+//*/
 
 
