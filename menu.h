@@ -11,7 +11,8 @@ private:
 public:
     Menu();
     void print(Field &field);
-    void print(Unit** blue_unit, Unit** yellow_unit);
+//    void print();
+    void print(Unit **blue_unit, Unit **yellow_unit, Unit* blue_base, Unit* yellow_base);
     void units_choise() const;
 };
 

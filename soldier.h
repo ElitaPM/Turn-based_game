@@ -7,27 +7,6 @@
 
 
 
-//class Soldier: public Unit
-//{
-//protected:
-//    int HP;
-//    int armor;
-//    int Ammo;
-//    int Weapon_damage;
-//    int Range;
-//    int Bonus_chance;
-//    std::string color;
-//public:
-//    Soldier(std::string color) : Unit(){this->color = color;}
-//    std::string get_color();
-//    bool legal_shoot(std::pair<int,int> coord);
-//    bool legal_move(std::pair<int,int> coord);
-//    int hit_damage(int Damage);
-//    //void get_damage(int Damage);
-//    virtual void bonus() = 0;
-//    int getAmmo(){return Ammo;}
-//};
-
 class Sniper: public Unit
 {
 public:
@@ -37,13 +16,12 @@ public:
         armor = 0;
         Ammo = 1;
         Weapon_damage = 100;
-        Range = 20;
+        Range = 15;
         Bonus_chance = 10;
         Accuracy = 100;
         unit_name = "Снайпер";
     }
     void bonus() {}
-    bool is_alive() { return HP > 0 ? true : false;}
 };
 
 class Stormtrooper: public Unit
@@ -55,13 +33,12 @@ public:
         armor = 3;
         Ammo = 10;
         Weapon_damage = 20;
-        Range = 10;
+        Range = 15;
         Bonus_chance = 10;
         Accuracy = 80;
         unit_name = "Автоматчик";
     }
     void bonus() {}
-    bool is_alive() { return HP > 0 ? true : false;}
 };
 
 class MachineGunner: public Unit
@@ -79,7 +56,6 @@ public:
         unit_name = "Пулеметчик";
     }
     void bonus() {}
-    bool is_alive() { return HP > 0 ? true : false;}
 };
 
 class Shotgun: public Unit
@@ -97,7 +73,6 @@ public:
         unit_name = "Дробовик";
     }
     void bonus() {}
-    bool is_alive() { return HP > 0 ? true : false;}
 };
 
 #endif // SOLDIER_H

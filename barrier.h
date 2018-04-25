@@ -10,7 +10,6 @@ class Barrier: public Unit
 {
 public:
     Barrier(std::string color): Unit(color){}
-    bool is_alive(){}
     void bonus(){}
 };
 

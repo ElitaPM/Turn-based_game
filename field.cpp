@@ -28,23 +28,38 @@ void Field::units_simbol(char** symbols)
             {
                 if (typeid(*ptr[j][i]) == typeid(sniper))
                 {
-                    symbols[j][i] = 'S';
+                    if(ptr[j][i]->get_color() == "blue")
+                            symbols[j][i] = 'S';
+                    else
+                            symbols[j][i] = 's';
                 }
                 else if (typeid(*ptr[j][i]) == typeid(stormtr))
                 {
-                    symbols[j][i] ='A';
+                    if(ptr[j][i]->get_color() == "blue")
+                            symbols[j][i] = 'A';
+                    else
+                            symbols[j][i] = 'a';
                 }
                 else if (typeid(*ptr[j][i]) == typeid(machinegun))
                 {
-                    symbols[j][i] ='P';
+                    if(ptr[j][i]->get_color() == "blue")
+                            symbols[j][i] = 'P';
+                    else
+                            symbols[j][i] = 'p';
                 }
                 else if (typeid(*ptr[j][i]) == typeid(gun))
                 {
-                    symbols[j][i] ='G';
+                    if(ptr[j][i]->get_color() == "blue")
+                            symbols[j][i] = 'G';
+                    else
+                            symbols[j][i] = 'g';
                 }
                 else if (typeid(*ptr[j][i]) == typeid(base))
                 {
-                    symbols[j][i] ='B';
+                    if(ptr[j][i]->get_color() == "blue")
+                            symbols[j][i] = 'B';
+                    else
+                            symbols[j][i] = 'b';
                 }
                 else if (typeid(*ptr[j][i]) == typeid(barrier))
                 {
@@ -72,7 +87,9 @@ void Field::init(Unit* blueUnit_1,
     srand(time(NULL));
 
     int blueWarBaseLocation = rand()%20;
+    blueWarBase.set_coord(blueWarBaseLocation , 0);
     int yellowWarBaseLocation = rand()%20;
+    yellowWarBase.set_coord(yellowWarBaseLocation , 19);
     std::pair<int , int> blueUnit_1Coord, blueUnit_2Coord, blueUnit_3Coord, yellowUnit_1Coord, yellowUnit_2Coord, yellowUnit_3Coord;
 
 
@@ -376,28 +393,59 @@ void Field::shoot(Unit* soldier)
 
     int distanse = abs(soldier->get_coord().first + 1 - temp1) > abs(soldier->get_coord().second + 1 - temp2) ? abs(soldier->get_coord().first + 1 - temp1) : abs(soldier->get_coord().second + 1 - temp2);
 
+
+
     if(typeid(*soldier) == typeid(sniper))
     {
+        srand(time(NULL));
         if(ptr[temp1 - 1][temp2 - 1] != NULL)
         {
             if(typeid(*ptr[temp1 - 1][temp2 - 1]) != typeid(barrier))
             {
                 if(hit(soldier, distanse) && soldier->get_color() != ptr[temp1 - 1][temp2 - 1]->get_color())
                 {
-                    ptr[temp1 - 1][temp2 - 1]->get_damage(100);
+                    ptr[temp1 - 1][temp2 - 1]->get_damage(soldier->getWeapon_damage());
                     if(!ptr[temp1 - 1][temp2 - 1]->is_alive())
                     {
                         ptr[temp1 - 1][temp2 - 1] = NULL;
                     }
-                    std::cout << "Вы попали" << std::endl;
                 }
             }
         }
     }
+
+
+
+
     else if(typeid(*soldier) == typeid(stormtr))
     {
-
+        for(int i = 0; i < soldier->getAmmo(); i++)
+        {
+        srand(time(NULL)+i);
+        if(ptr[temp1 - 1][temp2 - 1] != NULL)
+        {
+            if(typeid(*ptr[temp1 - 1][temp2 - 1]) != typeid(barrier))
+            {
+                if(hit(soldier, distanse) && soldier->get_color() != ptr[temp1 - 1][temp2 - 1]->get_color())
+                {
+                    ptr[temp1 - 1][temp2 - 1]->get_damage(soldier->getWeapon_damage());
+                    if(!ptr[temp1 - 1][temp2 - 1]->is_alive())
+                    {
+                        ptr[temp1 - 1][temp2 - 1] = NULL;
+                    }
+                }
+            }
+        }
+        }
     }
+
+
+
+
+
+
+
+
     else if(typeid(*soldier) == typeid(machinegun))
     {
 
@@ -411,12 +459,8 @@ void Field::shoot(Unit* soldier)
 
 bool Field::hit(Unit* soldier, int range)
 {
-    srand(time(NULL));
+    int chance = (int)(((double)(soldier->getAccuracy())/100)*(100 - range*3));
 
-    int chance = (int)(((soldier->getAccuracy())/100)*(100 - range*3));
-
-    int temp = rand()%100;
-
+    int temp = rand()%99;
     return temp > chance ? false : true;
-
 }

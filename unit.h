@@ -26,7 +26,7 @@ public:
     bool legal_shoot(std::pair<int,int> coord);
     bool legal_move(std::pair<int,int> coord);
     int hit_damage(int Damage);
-    void showHP () { std::cout << HP << std::endl;}
+    void showHP ();
     void get_damage(int Damage)
     {
         HP = HP - (Damage-Damage*armor/10);
@@ -37,8 +37,9 @@ public:
     int getAmmo(){return Ammo;}
     int getRange() {return Range;}
     int getAccuracy() {return Accuracy;}
+    int getWeapon_damage(){return Weapon_damage;}
 
-    virtual bool is_alive() = 0;
+    bool is_alive() { return HP > 0 ? true : false;}
     void set_coord(int first, int second);
     std::pair<int, int> get_coord();
 };
