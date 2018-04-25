@@ -7,30 +7,31 @@
 
 
 
-class Soldier: public Unit
-{
-protected:
-    int HP;
-    int armor;
-    int Ammo;
-    int Weapon_damage;
-    int Range;
-    int Bonus_chance;
-    std::string color;
-public:
-    Soldier(std::string color) : Unit(){this->color = color;}
-    std::string get_color();
-    bool legal_shoot(std::pair<int,int> coord);
-    bool legal_move(std::pair<int,int> coord);
-    int hit_damage(int Damage);
-    //void get_damage(int Damage);
-    virtual void bonus() = 0;
-};
+//class Soldier: public Unit
+//{
+//protected:
+//    int HP;
+//    int armor;
+//    int Ammo;
+//    int Weapon_damage;
+//    int Range;
+//    int Bonus_chance;
+//    std::string color;
+//public:
+//    Soldier(std::string color) : Unit(){this->color = color;}
+//    std::string get_color();
+//    bool legal_shoot(std::pair<int,int> coord);
+//    bool legal_move(std::pair<int,int> coord);
+//    int hit_damage(int Damage);
+//    //void get_damage(int Damage);
+//    virtual void bonus() = 0;
+//    int getAmmo(){return Ammo;}
+//};
 
-class Sniper: public Soldier
+class Sniper: public Unit
 {
 public:
-    Sniper(std::string color) : Soldier(color)
+    Sniper(std::string color) : Unit(color)
     {
         HP = 100;
         armor = 0;
@@ -45,10 +46,10 @@ public:
     bool is_alive() { return HP > 0 ? true : false;}
 };
 
-class Stormtrooper: public Soldier
+class Stormtrooper: public Unit
 {
 public:
-    Stormtrooper(std::string color) : Soldier(color)
+    Stormtrooper(std::string color) : Unit(color)
     {
         HP = 150;
         armor = 3;
@@ -61,10 +62,10 @@ public:
     bool is_alive() {}
 };
 
-class MachineGunner: public Soldier
+class MachineGunner: public Unit
 {
 public:
-    MachineGunner(std::string color) : Soldier(color)
+    MachineGunner(std::string color) : Unit(color)
     {
         HP = 300;
         armor = 3;
@@ -77,10 +78,10 @@ public:
     bool is_alive() {}
 };
 
-class Shotgun: public Soldier
+class Shotgun: public Unit
 {
 public:
-    Shotgun(std::string color) : Soldier(color)
+    Shotgun(std::string color) : Unit(color)
     {
         HP = 300;
         armor = 5;

@@ -12,7 +12,7 @@ int main()
 {
     Menu menu;
     Field field;
-    Barrier barrier;
+    Barrier barrier("");
     Sniper blue_sniper_1("blue"), blue_sniper_2("blue"), blue_sniper_3("blue"), yellow_sniper_1("yellow"), yellow_sniper_2("yellow"), yellow_sniper_3("yellow");
     Stormtrooper blue_stormtrooper_1("blue"), blue_stormtrooper_2("blue"), blue_stormtrooper_3("blue"), yellow_stormtrooper_1("yellow"), yellow_stormtrooper_2("yellow"), yellow_stormtrooper_3("yellow");
     MachineGunner blue_machineGunner_1("blue"), blue_machineGunner_2("blue"), blue_machineGunner_3("blue"), yellow_machineGunner_1("yellow"), yellow_machineGunner_2("yellow"), yellow_machineGunner_3("yellow");
@@ -76,23 +76,23 @@ int main()
     }
 
 
-    WarBase wb1,wb2;
+    WarBase wb1(""),wb2("");
 
     field.init(blue_unit[0], blue_unit[1], blue_unit[2], yellow_unit[0], yellow_unit[1], yellow_unit[2], wb1, wb2, barrier);
     menu.print(field);
     menu.print();
 
-//    while(1)
-//    {
-//        cout << blue_unit[0]->get_coord().first + 1 << " " << blue_unit[0]->get_coord().second + 1 << endl;
-//    field.move(blue_unit[0]);
-//    menu.print(field);
-//    menu.print();
-//        cout << yellow_unit[0]->get_coord().first + 1 << " " << yellow_unit[0]->get_coord().second + 1 << endl;
-//    field.move(yellow_unit[0]);
-//    menu.print(field);
-//    menu.print();
-//    }
+    while(1)
+    {
+        cout << blue_unit[0]->get_coord().first + 1 << " " << blue_unit[0]->get_coord().second + 1 << endl;
+    field.move(blue_unit[0]);
+    menu.print(field);
+    menu.print();
+        cout << yellow_unit[0]->get_coord().first + 1 << " " << yellow_unit[0]->get_coord().second + 1 << endl;
+    field.move(yellow_unit[0]);
+    menu.print(field);
+    menu.print();
+    }
 
     return 0;
 

@@ -1,9 +1,5 @@
 #include "unit.h"
 
-Unit::Unit()
-{
-
-}
 
 void Unit::set_coord(int first, int second)
 {

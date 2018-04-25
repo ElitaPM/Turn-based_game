@@ -6,10 +6,7 @@ Soldier::Soldier(string color): Unit::Unit()
     this->color = color;
 }
 */
-std::string Soldier::get_color()
-{
-    return this->color;
-}
+
 
 void Sniper::get_damage(int Damage)
 {

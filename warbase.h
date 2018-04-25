@@ -6,11 +6,12 @@ class WarBase: public Unit
 {
 private:
     bool Cooldown;
+    std::string color;
 public:
-    WarBase(): Unit(){}
+    WarBase(std::string color): Unit(color){}
     bool ability() {}
     bool is_alive() {}
-
+    void bonus(){}
 };
 
 #endif // WARBASE_H

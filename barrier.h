@@ -9,8 +9,9 @@
 class Barrier: public Unit
 {
 public:
-    Barrier(): Unit(){}
+    Barrier(std::string color): Unit(color){}
     bool is_alive(){}
+    void bonus(){}
 };
 
 #endif // BARRIER_H

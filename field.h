@@ -15,7 +15,6 @@ private:
 public:
     Field();
     void move(Unit* soldier);
-    void shoot(Unit* soldier);
     void units_simbol(char **symbols);
     void init(Unit* blueUnit_1,
               Unit* blueUnit_2,
@@ -26,6 +25,7 @@ public:
               WarBase& blueWarBase,
               WarBase& yellowWarBase,
               Barrier& barrier);
+
 
 };
 

@@ -14,8 +14,8 @@ Field::Field()
 
 void Field::units_simbol(char** symbols)
 {
-    Barrier barrier;
-    WarBase base;
+    Barrier barrier("");
+    WarBase base("");
     Sniper sniper("");
     Stormtrooper stormtr("");
     MachineGunner machinegun("");
@@ -344,7 +344,4 @@ void Field::move(Unit* soldier)
     this->ptr[temp.first][temp.second] = NULL;
 }
 
-void Field::shoot(Unit* soldier)
-{
 
-}
