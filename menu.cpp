@@ -79,12 +79,16 @@ void Menu::print(Field &field)
 
 }
 
-void Menu::print()
+void Menu::print(Unit **blue_unit, Unit **yellow_unit)
 {
+    std::cout << "\x1B[2J\x1B[H";
+
     for (int j=0; j < 20; j++)
     {
         std::cout << std::setw(2) << ' ';
         std::cout << std::setw(2) << std::left << j + 1;
+
+
     }
     std::cout << std::endl;
     for (int j=0; j < 41; j++)
@@ -92,6 +96,21 @@ void Menu::print()
         for (int i=0; i < 84; i++)
         {
             std::cout << field[j][i];
+            if (j == 1 && i == 82)
+            {
+                std::cout << "   Blue unit 1 HP: ";  blue_unit[0]->showHP(); std::cout << "   ";
+                std::cout << "Yellow unit 1 HP: "; yellow_unit[0]->showHP();
+            }
+            else if (j == 3 && i == 82)
+            {
+                std::cout << "   Blue unit 2 HP: ";  blue_unit[1]->showHP(); std::cout << "   ";
+                std::cout << "Yellow unit 2 HP: "; yellow_unit[1]->showHP();
+            }
+            else if (j == 5 && i == 82)
+            {
+                std::cout << "   Blue unit 3 HP: ";  blue_unit[2]->showHP(); std::cout << "   ";
+                std::cout << "Yellow unit 3 HP: "; yellow_unit[2]->showHP();
+            }
         }
     }
 }
