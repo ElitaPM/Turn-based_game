@@ -130,7 +130,7 @@ int main()
     menu.print();
 
 
-    if(!(blue_unit[1]->is_alive() + blue_unit[1]->is_alive() + blue_unit[1]->is_alive()))
+    if(!blue_unit[0]->is_alive() && !blue_unit[1]->is_alive() && !blue_unit[2]->is_alive())
     {
         cout << "Победила команда Yellow!" << endl;
         break;
@@ -181,7 +181,7 @@ int main()
     menu.print(field);
     menu.print();
 
-    if(!(yellow_unit[1]->is_alive() + yellow_unit[1]->is_alive() + yellow_unit[1]->is_alive()))
+    if(!yellow_unit[0]->is_alive() && !yellow_unit[1]->is_alive() && !yellow_unit[2]->is_alive())
     {
         cout << "Победила команда Blue!" << endl;
         break;

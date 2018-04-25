@@ -337,7 +337,8 @@ void Field::move(Unit* soldier)
             std::cin >> temp2;
             i++;
         }
-    while(ptr[temp1 - 1][temp2 - 1] != NULL && temp1 != temp.first + 1 && temp2 != temp.second + 1 || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1 );
+    while(ptr[temp1 - 1][temp2 - 1] != NULL && temp1 != temp.first + 1 && temp2 != temp.second + 1 || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1
+          || temp1 < 1 || temp2 > 20);
 
     soldier->set_coord(temp1 - 1, temp2 - 1);
     this->ptr[temp1 - 1][temp2 - 1] = soldier;
@@ -377,7 +378,7 @@ void Field::shoot(Unit* soldier)
 
     if(typeid(*soldier) == typeid(sniper))
     {
-        if(ptr[temp1 - 1][temp2 - 1] != NULL || (temp1 - 1 != soldier->get_coord().first && temp2 - 1 != soldier->get_coord().second))
+        if(ptr[temp1 - 1][temp2 - 1] != NULL)
         {
             if(typeid(*ptr[temp1 - 1][temp2 - 1]) != typeid(barrier))
             {
