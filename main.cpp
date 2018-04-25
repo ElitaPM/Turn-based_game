@@ -20,10 +20,15 @@ int main()
 
         cin >> ch;
 
-        if (ch[0] != '1' && ch[0] != '2' && ch[0] != '0' || ch.length()>1 )
+        int length = ch.length();
+
+        cout << ch.length();
+
+        if (length>1 || ch[0] != '1' && ch[0] != '2' && ch[0] != '0')
         {
             cout << "\x1B[2J\x1B[H";
             cout << "Введите число от 0 до 2." << endl;
+            continue;
         }
 
         switch (ch[0])
