@@ -8,10 +8,7 @@ Soldier::Soldier(string color): Unit::Unit()
 */
 
 
-void Sniper::get_damage(int Damage)
-{
-    HP -= Damage;
-}
+
 
 
 

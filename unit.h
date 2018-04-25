@@ -2,6 +2,7 @@
 #define UNIT_H
 #include <utility>
 #include <string>
+#include <iostream>
 
 
 
@@ -14,20 +15,28 @@ protected:
     int Weapon_damage;
     int Range;
     int Bonus_chance;
+    int Accuracy;
     std::string color;
     std::pair <int, int> coord;
+    std::string unit_name;
 public:
     Unit(std::string color){this->color = color;}
-    std::string get_color();
+    std::string get_color(){return color;}
+    std::string get_unit_name();
     bool legal_shoot(std::pair<int,int> coord);
     bool legal_move(std::pair<int,int> coord);
     int hit_damage(int Damage);
-    void get_damage(int Damage);
+    void showHP () { std::cout << HP << std::endl;}
+    void get_damage(int Damage)
+    {
+        HP = HP - (Damage-Damage*armor/10);
+    }
     virtual void bonus() = 0;
 
 
     int getAmmo(){return Ammo;}
-
+    int getRange() {return Range;}
+    int getAccuracy() {return Accuracy;}
 
     virtual bool is_alive() = 0;
     void set_coord(int first, int second);

@@ -84,14 +84,109 @@ int main()
 
     while(1)
     {
-        cout << blue_unit[0]->get_coord().first + 1 << " " << blue_unit[0]->get_coord().second + 1 << endl;
+        if(blue_unit[0]->is_alive())
+        {
+    cout << "Ход юнита голубой команды " << blue_unit[0]->get_unit_name() << " с координатами: " <<
+    blue_unit[0]->get_coord().first + 1 << " " << blue_unit[0]->get_coord().second + 1 << endl;
     field.move(blue_unit[0]);
+    menu.print();
+        }
+        if(blue_unit[1]->is_alive())
+        {
+    cout << "Ход юнита голубой команды " << blue_unit[1]->get_unit_name() << " с координатами: " <<
+    blue_unit[1]->get_coord().first + 1 << " " << blue_unit[1]->get_coord().second + 1 << endl;
+    field.move(blue_unit[1]);
+    menu.print();
+        }
+        if(blue_unit[2]->is_alive())
+        {
+    cout << "Ход юнита голубой команды " << blue_unit[2]->get_unit_name() << " с координатами: " <<
+    blue_unit[2]->get_coord().first + 1 << " " << blue_unit[2]->get_coord().second + 1 << endl;
+    field.move(blue_unit[2]);
+    menu.print();
+        }
+        if(yellow_unit[0]->is_alive())
+        {
+    cout << "Выстрел юнита желтой команды " << yellow_unit[0]->get_unit_name() << " с координатами: " <<
+    yellow_unit[0]->get_coord().first + 1 << " " << yellow_unit[0]->get_coord().second + 1 << endl;
+    field.shoot(yellow_unit[0]);
+    menu.print();
+        }
+        if(yellow_unit[1]->is_alive())
+        {
+    cout << "Выстрел юнита желтой команды " << yellow_unit[1]->get_unit_name() << " с координатами: " <<
+    yellow_unit[1]->get_coord().first + 1 << " " << yellow_unit[1]->get_coord().second + 1 << endl;
+    field.shoot(yellow_unit[1]);
+    menu.print();
+        }
+        if(yellow_unit[2]->is_alive())
+        {
+    cout << "Выстрел юнита желтой команды " << yellow_unit[2]->get_unit_name() << " с координатами: " <<
+    yellow_unit[2]->get_coord().first + 1 << " " << yellow_unit[2]->get_coord().second + 1 << endl;
+    field.shoot(yellow_unit[2]);
+    menu.print();
+        }
     menu.print(field);
     menu.print();
-        cout << yellow_unit[0]->get_coord().first + 1 << " " << yellow_unit[0]->get_coord().second + 1 << endl;
+
+
+    if(!(blue_unit[1]->is_alive() + blue_unit[1]->is_alive() + blue_unit[1]->is_alive()))
+    {
+        cout << "Победила команда Yellow!" << endl;
+        break;
+    }
+
+        if(yellow_unit[0]->is_alive())
+        {
+    cout << "Ход юнита желтой команды " << yellow_unit[0]->get_unit_name() << " с координатами: " <<
+    yellow_unit[0]->get_coord().first + 1 << " " << yellow_unit[0]->get_coord().second + 1 << endl;
     field.move(yellow_unit[0]);
+    menu.print();
+        }
+        if(yellow_unit[1]->is_alive())
+        {
+    cout << "Ход юнита желтой команды " << yellow_unit[1]->get_unit_name() << " с координатами: " <<
+    yellow_unit[1]->get_coord().first + 1 << " " << yellow_unit[1]->get_coord().second + 1 << endl;
+    field.move(yellow_unit[1]);
+    menu.print();
+        }
+        if(yellow_unit[2]->is_alive())
+        {
+    cout << "Ход юнита желтой команды " << yellow_unit[2]->get_unit_name() << " с координатами: " <<
+    yellow_unit[2]->get_coord().first + 1 << " " << yellow_unit[2]->get_coord().second + 1 << endl;
+    field.move(yellow_unit[2]);
+    menu.print();
+        }
+        if(blue_unit[0]->is_alive())
+        {
+    cout << "Выстрел юнита голубой команды " << blue_unit[0]->get_unit_name() << " с координатами: " <<
+    blue_unit[0]->get_coord().first + 1 << " " << blue_unit[0]->get_coord().second + 1 << endl;
+    field.shoot(blue_unit[0]);
+    menu.print();
+        }
+        if(blue_unit[1]->is_alive())
+        {
+    cout << "Выстрел юнита голубой команды " << blue_unit[1]->get_unit_name() << " с координатами: " <<
+    blue_unit[1]->get_coord().first + 1 << " " << blue_unit[1]->get_coord().second + 1 << endl;
+    field.shoot(blue_unit[1]);
+    menu.print();
+        }
+        if(blue_unit[2]->is_alive())
+        {
+    cout << "Выстрел юнита голубой команды " << blue_unit[2]->get_unit_name() << " с координатами: " <<
+    blue_unit[2]->get_coord().first + 1 << " " << blue_unit[2]->get_coord().second + 1 << endl;
+    field.shoot(blue_unit[2]);
+    menu.print();
+        }
     menu.print(field);
     menu.print();
+
+    if(!(yellow_unit[1]->is_alive() + yellow_unit[1]->is_alive() + yellow_unit[1]->is_alive()))
+    {
+        cout << "Победила команда Blue!" << endl;
+        break;
+    }
+
     }
 
     return 0;

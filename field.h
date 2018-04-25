@@ -14,7 +14,9 @@ private:
     Unit *ptr[20][20];
 public:
     Field();
+    bool hit(Unit* soldier, int range);
     void move(Unit* soldier);
+    void shoot(Unit* soldier);
     void units_simbol(char **symbols);
     void init(Unit* blueUnit_1,
               Unit* blueUnit_2,

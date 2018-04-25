@@ -337,11 +337,85 @@ void Field::move(Unit* soldier)
             std::cin >> temp2;
             i++;
         }
-    while(ptr[temp1 - 1][temp2 - 1] != NULL || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1 );
+    while(ptr[temp1 - 1][temp2 - 1] != NULL && temp1 != temp.first + 1 && temp2 != temp.second + 1 || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1 );
 
     soldier->set_coord(temp1 - 1, temp2 - 1);
     this->ptr[temp1 - 1][temp2 - 1] = soldier;
+    if(temp != soldier->get_coord())
+    {
     this->ptr[temp.first][temp.second] = NULL;
+    }
 }
 
 
+void Field::shoot(Unit* soldier)
+{
+    Sniper sniper("");
+    Stormtrooper stormtr("");
+    MachineGunner machinegun("");
+    Shotgun gun("");
+    Barrier barrier("");
+    int temp1,temp2;
+
+
+    int i = 0;
+    do
+        {
+            if(i != 0)
+            {
+                std::cout << "Некорректный выстрел" << std::endl;
+            }
+            std::cout << "Введите строку: ";
+            std::cin >> temp1;
+            std::cout << "Введите столбец: ";
+            std::cin >> temp2;
+            i++;
+        }
+    while(abs(soldier->get_coord().first - temp1) > soldier->getRange() || abs(soldier->get_coord().second - temp2) > soldier->getRange());
+
+    int distanse = abs(soldier->get_coord().first + 1 - temp1) > abs(soldier->get_coord().second + 1 - temp2) ? abs(soldier->get_coord().first + 1 - temp1) : abs(soldier->get_coord().second + 1 - temp2);
+
+    if(typeid(*soldier) == typeid(sniper))
+    {
+        if(ptr[temp1 - 1][temp2 - 1] != NULL || (temp1 - 1 != soldier->get_coord().first && temp2 - 1 != soldier->get_coord().second))
+        {
+            if(typeid(*ptr[temp1 - 1][temp2 - 1]) != typeid(barrier))
+            {
+                if(hit(soldier, distanse) && soldier->get_color() != ptr[temp1 - 1][temp2 - 1]->get_color())
+                {
+                    ptr[temp1 - 1][temp2 - 1]->get_damage(100);
+                    if(!ptr[temp1 - 1][temp2 - 1]->is_alive())
+                    {
+                        ptr[temp1 - 1][temp2 - 1] = NULL;
+                    }
+                    std::cout << "Вы попали" << std::endl;
+                }
+            }
+        }
+    }
+    else if(typeid(*soldier) == typeid(stormtr))
+    {
+
+    }
+    else if(typeid(*soldier) == typeid(machinegun))
+    {
+
+    }
+    else if(typeid(*soldier) == typeid(gun))
+    {
+
+    }
+}
+
+
+bool Field::hit(Unit* soldier, int range)
+{
+    srand(time(NULL));
+
+    int chance = (int)(((soldier->getAccuracy())/100)*(100 - range*3));
+
+    int temp = rand()%100;
+
+    return temp > chance ? false : true;
+
+}

@@ -13,4 +13,7 @@ std::pair<int, int> Unit::get_coord()
 }
 
 
-
+std::string Unit::get_unit_name()
+{
+    return unit_name;
+}
