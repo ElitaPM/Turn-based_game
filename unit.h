@@ -23,13 +23,11 @@ public:
     Unit(std::string color){this->color = color;}
     std::string get_color(){return color;}
     std::string get_unit_name();
-    bool legal_shoot(std::pair<int,int> coord);
-    bool legal_move(std::pair<int,int> coord);
-    int hit_damage(int Damage);
+
     void showHP ();
-    void get_damage(int Damage)
+    void get_damage(int Damage, bool desolator = true)
     {
-        HP = HP - (Damage-Damage*armor/10);
+        HP = HP - (Damage-((int)desolator)*Damage*armor/10);
     }
     virtual bool bonus() = 0;
 
@@ -37,15 +35,14 @@ public:
     int getAmmo(){return Ammo;}
     int getRange() {return Range;}
     int getAccuracy() {return Accuracy;}
+    int getArmor() {return armor;}
     int getWeapon_damage(){return Weapon_damage;}
 
     bool is_alive() { return HP > 0 ? true : false;}
     void set_coord(int first, int second);
+    void set_armor(int armor);
     std::pair<int, int> get_coord();
 
-    void before();
-    int after ();
-    void non_bonus ();
 };
 
 #endif // UNIT_H

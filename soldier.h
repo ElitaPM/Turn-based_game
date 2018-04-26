@@ -7,6 +7,7 @@
 #include <time.h>
 
 
+
 class Sniper: public Unit
 {
 public:
@@ -21,7 +22,7 @@ public:
         Accuracy = 100;
         unit_name = "Снайпер";
     }
-    bool bonus();// {}
+    bool bonus();
 };
 
 class Stormtrooper: public Unit
@@ -34,11 +35,11 @@ public:
         Ammo = 10;
         Weapon_damage = 20;
         Range = 10;
-        Bonus_chance = 10;
+        Bonus_chance = 20;
         Accuracy = 80;
         unit_name = "Автоматчик";
     }
-    bool bonus(); //{}
+    bool bonus();
 };
 
 class MachineGunner: public Unit
@@ -49,13 +50,13 @@ public:
         HP = 300;
         armor = 3;
         Ammo = 50;
-        Weapon_damage = 10;
+        Weapon_damage = 12;
         Range = 8;
-        Bonus_chance = 10;
+        Bonus_chance = 20;
         Accuracy = 60;
         unit_name = "Пулеметчик";
     }
-    bool bonus(); //{}
+    bool bonus();
 };
 
 class Shotgun: public Unit
@@ -68,11 +69,11 @@ public:
         Ammo = 3;
         Weapon_damage = 200;
         Range = 8;
-        Bonus_chance = 10;
+        Bonus_chance = 70;
         Accuracy = 100;
         unit_name = "Дробовик";
     }
-    bool bonus(); // {}
+    bool bonus();
 };
 
 #endif // SOLDIER_H
