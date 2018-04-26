@@ -25,3 +25,52 @@ void Unit::showHP ()
     else
         std::cout << "Юнит мертв";
 }
+
+void Unit::before(Unit* soldier)
+{
+    if (soldier->get_unit_name() == "Автоматчик")
+    {
+        if (soldier->bonus() == true)
+            std::cout << "Критический урон." << std::endl;
+    }
+    if (soldier->get_unit_name() == "Дробовик")
+    {
+
+    }
+}
+
+void Unit::non_bonus()
+{
+    Weapon_damage = 20;
+}
+
+int Unit::after(Unit *soldier)
+{
+    if (soldier->get_unit_name() == "Снайпер")
+    {
+        if (soldier->bonus() == true)
+        {
+//            std::cout << "Второй выстрел." << std::endl;
+            return 0;
+        }
+    }
+    if (soldier->get_unit_name() == "Автоматчик")
+    {
+        soldier->non_bonus();
+        return -1;
+    }
+    if (soldier->get_unit_name() == "Пулеметчик")
+    {
+        if (soldier->bonus() == true)
+        {
+//            std::cout << "Второй ход." << std::endl;
+            return 1;
+        }
+    }
+    if (soldier->get_unit_name() == "Дробовик")
+    {
+
+    }
+
+    return -1;
+}
