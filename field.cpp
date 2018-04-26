@@ -364,6 +364,12 @@ void Field::move(Unit* soldier)
     {
     ptr[temp.first][temp.second] = NULL;
     }
+    srand(time(NULL) + temp1);
+
+    if(soldier->get_unit_name() == "Пулеметчик" && soldier->bonus())
+    {
+        move(soldier);
+    }
 }
 
 
@@ -420,6 +426,15 @@ void Field::shoot(Unit* soldier)
         {
             srand(time(NULL) + k);
             i = 1 + rand()%(distanse - min_part + 1);
+            int critical;
+            if(soldier->get_unit_name() == "Автоматчик")
+            {
+                critical = (int)soldier->bonus() + 1;
+            }
+            else
+            {
+                critical = 1;
+            }
             if(column == distanse || soldier->get_coord().first + 1 == temp1)
             {
                     bool flag = true;
@@ -428,7 +443,7 @@ void Field::shoot(Unit* soldier)
                     for(int k = 1; k < i; k++)
                     {
                         if(flag)
-                        {std::cout << soldier->get_coord().first + 1<< "    " << soldier->get_coord().second + k*column_inv + 1<<std::endl;
+                        {
                         if(ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv] != NULL)
                         {
                             if(typeid(*ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]) == typeid(barrier))
@@ -440,7 +455,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
                                     if(!ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv] = NULL;
@@ -459,7 +474,7 @@ void Field::shoot(Unit* soldier)
                     for(int j = 1; j <= min_part; j++)
                     {
                         if(flag)
-                        {std::cout << soldier->get_coord().first  -j*row_inv + 1<< "    " << soldier->get_coord().second + (j + i - 1)*column_inv + 1 << std::endl;
+                        {
                         if(ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] != NULL)
                         {
                             if(typeid(*ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]) == typeid(barrier))
@@ -471,7 +486,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
                                     if(!ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] = NULL;
@@ -487,7 +502,7 @@ void Field::shoot(Unit* soldier)
                     if(flag)
                     {
                     for(int m = 1; m <= distanse - i - min_part + 1; m++)
-                    {std::cout << soldier->get_coord().first  - min_part*row_inv +1 << "    " << soldier->get_coord().second + (i + min_part - 1 + m)*column_inv + 1 <<std::endl;
+                    {
                         if(flag)
                         {
                         if(ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv] != NULL)
@@ -501,7 +516,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
                                     if(!ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv] = NULL;
@@ -526,7 +541,7 @@ void Field::shoot(Unit* soldier)
                     for(int k = 1; k < i; k++)
                     {
                         if(flag)
-                        {std::cout << soldier->get_coord().first - k*row_inv + 1<< "    " << soldier->get_coord().second + 1 << std::endl;
+                        {
                         if(ptr[soldier->get_coord().first + k*row_inv][soldier->get_coord().second] != NULL)
                         {
                             if(typeid(*ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]) == typeid(barrier))
@@ -538,7 +553,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->get_damage(soldier->getWeapon_damage());
+                                    ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
                                     if(!ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second] = NULL;
@@ -557,7 +572,7 @@ void Field::shoot(Unit* soldier)
                     for(int j = 1; j <= min_part; j++)
                     {
                         if(flag)
-                        {std::cout << soldier->get_coord().first  -j*row_inv + 1<< "    " << soldier->get_coord().second + (j + i - 1)*column_inv + 1 << std::endl;
+                        {
                         if(ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] != NULL)
                         {
                             if(typeid(*ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]) == typeid(barrier))
@@ -569,7 +584,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
                                     if(!ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] = NULL;
@@ -585,7 +600,7 @@ void Field::shoot(Unit* soldier)
                     if(flag)
                     {
                     for(int m = 1; m <= distanse - i - min_part + 1; m++)
-                    {std::cout << soldier->get_coord().first  - (i + min_part - 1 + m)*row_inv +1 << "    " << soldier->get_coord().second + min_part*column_inv + 1 <<std::endl;
+                    {
                         if(flag)
                         {
                         if(ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv] != NULL)
@@ -599,7 +614,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
                                     if(!ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv] = NULL;
@@ -617,6 +632,12 @@ void Field::shoot(Unit* soldier)
         }
 
 
+
+        if(soldier->get_unit_name() == "Снайпер" && soldier->bonus())
+        {
+            shoot(soldier);
+        }
+
 }
 
 
@@ -624,6 +645,6 @@ bool Field::hit(Unit* soldier, int range)
 {
     int chance = (int)(((double)(soldier->getAccuracy())/100)*(100 - range*3));
 
-    int temp = rand()%99;
+    int temp = 1 + rand()%100;
     return temp > chance ? false : true;
 }

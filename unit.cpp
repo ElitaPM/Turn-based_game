@@ -26,59 +26,7 @@ void Unit::showHP ()
         std::cout << "Юнит мертв";
 }
 
-void Unit::before(Unit* soldier)
+void Unit::set_armor(int armor)
 {
-    if (soldier->get_unit_name() == "Автоматчик")
-    {
-        soldier->bonus();
-//            std::cout << "Критический урон." << std::endl;
-    }
-    if (soldier->get_unit_name() == "Дробовик")
-    {
-        soldier->bonus();
-    }
-}
-
-void Unit::non_bonus(Unit* soldier)
-{
-    if (soldier->get_unit_name() == "Автоматчик")
-    {
-        Weapon_damage = 20;
-    }
-    if (soldier->get_unit_name() == "Дробовик")
-    {
-        Weapon_damage = 200;
-    }
-}
-
-int Unit::after(Unit *soldier)
-{
-    if (soldier->get_unit_name() == "Снайпер")
-    {
-        if (soldier->bonus() == true)
-        {
-//            std::cout << "Второй выстрел." << std::endl;
-            return 0;
-        }
-    }
-    if (soldier->get_unit_name() == "Автоматчик")
-    {
-        soldier->non_bonus(soldier);
-        return -1;
-    }
-    if (soldier->get_unit_name() == "Пулеметчик")
-    {
-        if (soldier->bonus() == true)
-        {
-//            std::cout << "Второй ход." << std::endl;
-            return 1;
-        }
-    }
-    if (soldier->get_unit_name() == "Дробовик")
-    {
-        soldier->non_bonus(soldier);
-        return -1;
-    }
-
-    return -1;
+    this->armor = armor;
 }

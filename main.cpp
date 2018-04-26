@@ -44,7 +44,7 @@ int main()
     Unit* blue_unit[3];
     Unit* yellow_unit[3];
     int choise;
-    cout << "Голубая команда " << endl;
+    cout << "Blue team " << endl;
     menu.units_choise();
     cin >> choise;
 
@@ -71,7 +71,7 @@ int main()
         case 20: blue_unit[0] = &blue_stormtrooper_1; blue_unit[1] = &blue_machineGunner_1; blue_unit[2] = &blue_shotgun_1; break;
     }
 
-    cout << "Желтая команда " << endl;
+    cout << "Yellow team " << endl;
     menu.units_choise();
     cin >> choise;
 
@@ -107,6 +107,9 @@ int main()
     menu.print(field);
     menu.print(blue_unit,yellow_unit, blue_base, yellow_base);
 
+    bool blue_team_immortal = true;
+    bool yellow_team_immortal = true;
+
     while(1)
     {
         if(blue_unit[0]->is_alive())
@@ -114,70 +117,58 @@ int main()
     cout << "Ход юнита Blue team " << blue_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[0]->get_coord().first + 1 << "," << blue_unit[0]->get_coord().second + 1 << ")"<< endl;
     field.move(blue_unit[0]);
-    if (blue_unit[0]->after(blue_unit[0]) == 1)
-    {
-        cout << "Второй ход." << endl;
-        field.move(blue_unit[0]);
-    }
         }
         if(blue_unit[1]->is_alive())
         {
     cout << "Ход юнита Blue team " << blue_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[1]->get_coord().first + 1 << "," << blue_unit[1]->get_coord().second + 1 << ")"<< endl;
     field.move(blue_unit[1]);
-    if (blue_unit[1]->after(blue_unit[1]) == 1)
-    {
-        cout << "Второй ход." << endl;
-        field.move(blue_unit[1]);
-    }
         }
         if(blue_unit[2]->is_alive())
         {
     cout << "Ход юнита Blue team " << blue_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[2]->get_coord().first + 1 << "," << blue_unit[2]->get_coord().second + 1 << ")"<< endl;
     field.move(blue_unit[2]);
-    if (blue_unit[2]->after(blue_unit[2]) == 1)
-    {
-        cout << "Второй ход." << endl;
-        field.move(blue_unit[2]);
-    }
         }
-    menu.print(blue_unit,yellow_unit, blue_base, yellow_base);
+    int blue_unit_1_armor = blue_unit[0]->getArmor();
+    int blue_unit_2_armor = blue_unit[1]->getArmor();
+    int blue_unit_3_armor = blue_unit[2]->getArmor();
+        if(blue_team_immortal)
+        {
+            cout << "Использовать неуязвимость?" << endl;
+            cout << "1. Да" << endl;
+            cout << "2. Нет" << endl;
+            int choise;
+            cin >> choise;
+            switch (choise) {
+            case 1: wb1.ability(blue_unit); blue_team_immortal = false; break;
+            case 2: break;
+            }
+        }
+        menu.print(blue_unit,yellow_unit, blue_base, yellow_base);
         if(yellow_unit[0]->is_alive())
         {
     cout << "Выстрел юнита Yellow team " << yellow_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[0]->get_coord().first + 1 << "," << yellow_unit[0]->get_coord().second + 1 << ")"<< endl;
-    yellow_unit[0]->before(yellow_unit[0]);
     field.shoot(yellow_unit[0]);
-    if (yellow_unit[0]->after(yellow_unit[0]) == 0)
-    {
-        cout << "Второй выстрел." << endl;
-        field.shoot(yellow_unit[0]);
-    }
         }
         if(yellow_unit[1]->is_alive())
         {
     cout << "Выстрел юнита Yellow team " << yellow_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[1]->get_coord().first + 1 << "," << yellow_unit[1]->get_coord().second + 1 << ")"<< endl;
-    yellow_unit[1]->before(yellow_unit[1]);
     field.shoot(yellow_unit[1]);
-    if (yellow_unit[1]->after(yellow_unit[1]) == 0)
-    {
-        cout << "Второй выстрел." << endl;
-        field.shoot(yellow_unit[1]);
-    }
         }
         if(yellow_unit[2]->is_alive())
         {
     cout << "Выстрел юнита Yellow team " << yellow_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[2]->get_coord().first + 1 << "," << yellow_unit[2]->get_coord().second + 1 << ")"<< endl;
-    yellow_unit[2]->before(yellow_unit[2]);
     field.shoot(yellow_unit[2]);
-    if (yellow_unit[2]->after(yellow_unit[2]) == 0)
-    {
-        cout << "Второй выстрел." << endl;
-        field.shoot(yellow_unit[2]);
-    }
+        }
+        if(blue_team_immortal)
+        {
+            blue_unit[0]->set_armor(blue_unit_1_armor);
+            blue_unit[1]->set_armor(blue_unit_2_armor);
+            blue_unit[2]->set_armor(blue_unit_3_armor);
         }
 
     menu.print(field);
@@ -195,71 +186,61 @@ int main()
     cout << "Ход юнита Yellow team " << yellow_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[0]->get_coord().first + 1 << "," << yellow_unit[0]->get_coord().second + 1 << ")"<< endl;
     field.move(yellow_unit[0]);
-    if (yellow_unit[0]->after(yellow_unit[0]) == 1)
-    {
-        cout << "Второй ход." << endl;
-        field.move(yellow_unit[0]);
-    }
         }
         if(yellow_unit[1]->is_alive())
         {
     cout << "Ход юнита Yellow team " << yellow_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[1]->get_coord().first + 1 << "," << yellow_unit[1]->get_coord().second + 1 << ")"<< endl;
     field.move(yellow_unit[1]);
-    if (yellow_unit[1]->after(yellow_unit[1]) == 1)
-    {
-        cout << "Второй ход." << endl;
-        field.move(yellow_unit[1]);
-    }
         }
         if(yellow_unit[2]->is_alive())
         {
     cout << "Ход юнита Yellow team " << yellow_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[2]->get_coord().first + 1 << "," << yellow_unit[2]->get_coord().second + 1 << ")"<< endl;
     field.move(yellow_unit[2]);
-    if (yellow_unit[2]->after(yellow_unit[2]) == 1)
-    {
-        cout << "Второй ход." << endl;
-        field.move(yellow_unit[2]);
-    }
         }
+        int yellow_unit_1_armor = yellow_unit[0]->getArmor();
+        int yellow_unit_2_armor = yellow_unit[1]->getArmor();
+        int yellow_unit_3_armor = yellow_unit[2]->getArmor();
+            if(yellow_team_immortal)
+            {
+                cout << "Использовать неуязвимость?" << endl;
+                cout << "1. Да" << endl;
+                cout << "2. Нет" << endl;
+                int choise;
+                cin >> choise;
+                switch (choise) {
+                case 1: wb2.ability(yellow_unit); yellow_team_immortal = false; break;
+                case 2: break;
+                }
+            }
     menu.print(blue_unit,yellow_unit, blue_base, yellow_base);
         if(blue_unit[0]->is_alive())
         {
     cout << "Выстрел юнита Blue team " << blue_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[0]->get_coord().first + 1 << "," << blue_unit[0]->get_coord().second + 1 << ")"<< endl;
-    blue_unit[0]->before(blue_unit[0]);
     field.shoot(blue_unit[0]);
-    if (blue_unit[0]->after(blue_unit[0]) == 0)
-    {
-        cout << "Второй выстрел." << endl;
-        field.shoot(blue_unit[0]);
-    }
         }
         if(blue_unit[1]->is_alive())
         {
     cout << "Выстрел юнита Blue team " << blue_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[1]->get_coord().first + 1 << "," << blue_unit[1]->get_coord().second + 1 << ")"<< endl;
-    blue_unit[1]->before(blue_unit[1]);
     field.shoot(blue_unit[1]);
-    if (blue_unit[1]->after(blue_unit[1]) == 0)
-    {
-        cout << "Второй выстрел." << endl;
-        field.shoot(blue_unit[1]);
-    }
         }
         if(blue_unit[2]->is_alive())
         {
     cout << "Выстрел юнита Blue team " << blue_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[2]->get_coord().first + 1 << "," << blue_unit[2]->get_coord().second + 1 << ")"<< endl;
-    blue_unit[2]->before(blue_unit[2]);
     field.shoot(blue_unit[2]);
-    if (blue_unit[2]->after(blue_unit[2]) == 0)
-    {
-        cout << "Второй выстрел." << endl;
-        field.shoot(blue_unit[2]);
-    }
         }
+
+        if(yellow_team_immortal)
+        {
+            yellow_unit[0]->set_armor(yellow_unit_1_armor);
+            yellow_unit[1]->set_armor(yellow_unit_2_armor);
+            yellow_unit[2]->set_armor(yellow_unit_3_armor);
+        }
+
     menu.print(field);
     menu.print(blue_unit,yellow_unit, blue_base, yellow_base);
 

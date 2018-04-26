@@ -1,80 +1,40 @@
 #include "soldier.h"
 
-/*
-Soldier::Soldier(string color): Unit::Unit()
+
+
+
+bool MachineGunner::bonus()
 {
-    this->color = color;
-}
-*/
-
-
-
-
-
-
-//Stormtrooper::Stormtrooper()
-//{
-
-//}
-
-//MachineGunner::MachineGunner()
-//{
-
-//}
-
-//Shotgun::Shotgun()
-//{
-
-//}
-
-//*/
-
-bool Sniper::bonus()
-{
-    srand(NULL);
-    int lucky = rand()%100;
-    if (100 - lucky >= 100 - Bonus_chance)
+    int chance = Bonus_chance;
+    int temp = 1 + rand()%100;
+    if(temp <= chance)
     {
-//        std::cout << "Второй выстрел." << std::endl;
-        return true;
+    std::cout << "Бонус второго хода" << std::endl;
     }
-    else return false;
+    return temp > chance ? false : true;
 }
 
 bool Stormtrooper::bonus()
 {
-    srand(NULL);
-    int lucky = rand()%100;
-    if (100 - lucky >= 100 - Bonus_chance)
-    {
-        Weapon_damage = 50;
-        std::cout << "Критический урон." << std::endl;
-        return true;
-    }
-    else return false;
+    int chance = Bonus_chance;
+    int temp = 1 + rand()%100;
+    return temp > chance ? false : true;
 }
 
-bool MachineGunner::bonus()
+bool Sniper::bonus()
 {
-    srand(NULL);
-    int lucky = rand()%100;
-    if (100 - lucky >= 100 - Bonus_chance)
+    int chance = Bonus_chance;
+    int temp = 1 + rand()%100;
+    if(temp <= chance)
     {
-//        std::cout << "Второй ход." << std::endl;
-        return true;
+    std::cout << "Бонус второго выстрела" << std::endl;
     }
-    else return false;
+    return temp > chance ? false : true;
 }
 
 bool Shotgun::bonus()
 {
-    srand(NULL);
-    int lucky = rand()%100;
-    if (100 - lucky >= 100 - Bonus_chance)
-    {
-        Weapon_damage = 300;
-        std::cout << "Критический урон." << std::endl;
-        return true;
-    }
-    else return false;
+    int chance = Bonus_chance;
+    int temp = 1 + rand()%100;
+    return temp > chance ? false : true;
 }
