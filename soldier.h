@@ -16,7 +16,7 @@ public:
         armor = 0;
         Ammo = 1;
         Weapon_damage = 100;
-        Range = 15;
+        Range = 12;
         Bonus_chance = 10;
         Accuracy = 100;
         unit_name = "Снайпер";
@@ -33,7 +33,7 @@ public:
         armor = 3;
         Ammo = 10;
         Weapon_damage = 20;
-        Range = 15;
+        Range = 10;
         Bonus_chance = 10;
         Accuracy = 80;
         unit_name = "Автоматчик";
@@ -48,11 +48,11 @@ public:
     {
         HP = 300;
         armor = 3;
-        Ammo = 35;
-        Weapon_damage = 7;
-        Range = 6;
+        Ammo = 50;
+        Weapon_damage = 10;
+        Range = 8;
         Bonus_chance = 10;
-        Accuracy = 50;
+        Accuracy = 60;
         unit_name = "Пулеметчик";
     }
     void bonus() {}
@@ -63,11 +63,11 @@ class Shotgun: public Unit
 public:
     Shotgun(std::string color) : Unit(color)
     {
-        HP = 300;
+        HP = 200;
         armor = 5;
         Ammo = 3;
         Weapon_damage = 200;
-        Range = 7;
+        Range = 8;
         Bonus_chance = 10;
         Accuracy = 100;
         unit_name = "Дробовик";

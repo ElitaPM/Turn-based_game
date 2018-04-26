@@ -151,7 +151,7 @@ int main()
     menu.print(blue_unit,yellow_unit, blue_base, yellow_base);
 
 
-    if(!blue_unit[0]->is_alive() && !blue_unit[1]->is_alive() && !blue_unit[2]->is_alive() || !blue_base->is_alive()
+    if(!blue_unit[0]->is_alive() && !blue_unit[1]->is_alive() && !blue_unit[2]->is_alive() || !blue_base->is_alive())
     {
         cout << "Победила команда Yellow!" << endl;
         break;

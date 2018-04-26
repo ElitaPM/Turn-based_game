@@ -354,14 +354,15 @@ void Field::move(Unit* soldier)
             std::cin >> temp2;
             i++;
         }
-    while(ptr[temp1 - 1][temp2 - 1] != NULL && temp1 != temp.first + 1 && temp2 != temp.second + 1 || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1
+    while((ptr[temp1 - 1][temp2 - 1] != NULL && (temp1 != temp.first + 1 || temp2 != temp.second + 1))
+          || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1
           || temp1 < 1 || temp2 > 20);
 
     soldier->set_coord(temp1 - 1, temp2 - 1);
-    this->ptr[temp1 - 1][temp2 - 1] = soldier;
+    ptr[temp1 - 1][temp2 - 1] = soldier;
     if(temp != soldier->get_coord())
     {
-    this->ptr[temp.first][temp.second] = NULL;
+    ptr[temp.first][temp.second] = NULL;
     }
 }
 
@@ -391,69 +392,231 @@ void Field::shoot(Unit* soldier)
         }
     while(abs(soldier->get_coord().first - temp1) > soldier->getRange() || abs(soldier->get_coord().second - temp2) > soldier->getRange());
 
-    int distanse = abs(soldier->get_coord().first + 1 - temp1) > abs(soldier->get_coord().second + 1 - temp2) ? abs(soldier->get_coord().first + 1 - temp1) : abs(soldier->get_coord().second + 1 - temp2);
+    int row = abs(soldier->get_coord().first + 1 - temp1);
+    int column = abs(soldier->get_coord().second + 1 - temp2);
+    int distanse = row >= column ? row : column;
+    int min_part = row < column ? row : column;
+
+    int row_inv;
+    if(soldier->get_coord().first + 1 - temp1 > 0)
+        row_inv = 1;
+    else if(soldier->get_coord().first + 1 - temp1 < 0)
+        row_inv = -1;
+    else
+        row_inv = 0;
+
+    int column_inv;
+    if(soldier->get_coord().second + 1 - temp2 < 0)
+        column_inv = 1;
+    else if(soldier->get_coord().second + 1 - temp2 > 0)
+        column_inv = -1;
+    else
+        column_inv = 0;
 
 
 
-    if(typeid(*soldier) == typeid(sniper))
-    {
-        srand(time(NULL));
-        if(ptr[temp1 - 1][temp2 - 1] != NULL)
+
+        for(int k = 1; k <= soldier->getAmmo(); k++)
         {
-            if(typeid(*ptr[temp1 - 1][temp2 - 1]) != typeid(barrier))
+            srand(time(NULL) + k);
+            i = 1 + rand()%(distanse - min_part + 1);
+            if(column == distanse || soldier->get_coord().first + 1 == temp1)
             {
-                if(hit(soldier, distanse) && soldier->get_color() != ptr[temp1 - 1][temp2 - 1]->get_color())
-                {
-                    ptr[temp1 - 1][temp2 - 1]->get_damage(soldier->getWeapon_damage());
-                    if(!ptr[temp1 - 1][temp2 - 1]->is_alive())
+                    bool flag = true;
+                    if(flag)
                     {
-                        ptr[temp1 - 1][temp2 - 1] = NULL;
+                    for(int k = 1; k < i; k++)
+                    {
+                        if(flag)
+                        {std::cout << soldier->get_coord().first + 1<< "    " << soldier->get_coord().second + k*column_inv + 1<<std::endl;
+                        if(ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv] != NULL)
+                        {
+                            if(typeid(*ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]) == typeid(barrier))
+                            {
+                                    flag = false;
+                                    break;
+                            }
+                            else if(ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->get_color() != soldier->get_color())
+                            {
+                                if(hit(soldier, distanse))
+                                {
+                                    ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    if(!ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->is_alive())
+                                    {
+                                        ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv] = NULL;
+                                    }
+                                }
+                                flag = false;
+                                break;
+                            }
+                        }
+                        }
+
                     }
-                }
+                    }
+                    if(flag)
+                    {
+                    for(int j = 1; j <= min_part; j++)
+                    {
+                        if(flag)
+                        {std::cout << soldier->get_coord().first  -j*row_inv + 1<< "    " << soldier->get_coord().second + (j + i - 1)*column_inv + 1 << std::endl;
+                        if(ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] != NULL)
+                        {
+                            if(typeid(*ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]) == typeid(barrier))
+                            {
+                                    flag = false;
+                                    break;
+                            }
+                            else if(ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_color() != soldier->get_color())
+                            {
+                                if(hit(soldier, distanse))
+                                {
+                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    if(!ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->is_alive())
+                                    {
+                                        ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] = NULL;
+                                    }
+                                }
+                                flag = false;
+                                break;
+                            }
+                        }
+                        }
+                    }
+                    }
+                    if(flag)
+                    {
+                    for(int m = 1; m <= distanse - i - min_part + 1; m++)
+                    {std::cout << soldier->get_coord().first  - min_part*row_inv +1 << "    " << soldier->get_coord().second + (i + min_part - 1 + m)*column_inv + 1 <<std::endl;
+                        if(flag)
+                        {
+                        if(ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv] != NULL)
+                        {
+                            if(typeid(*ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]) == typeid(barrier))
+                            {
+                                flag = false;
+                                break;
+                            }
+                            else if(ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->get_color() != soldier->get_color())
+                            {
+                                if(hit(soldier, distanse))
+                                {
+                                    ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    if(!ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->is_alive())
+                                    {
+                                        ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv] = NULL;
+                                    }
+                                }
+                                flag = false;
+                                break;
+                            }
+                        }
+                        }
+                    }
+                    }
+
+            }
+
+
+            else if(row == distanse || soldier->get_coord().second + 1 == temp2)
+            {
+                    bool flag = true;
+                    if(flag)
+                    {
+                    for(int k = 1; k < i; k++)
+                    {
+                        if(flag)
+                        {std::cout << soldier->get_coord().first - k*row_inv + 1<< "    " << soldier->get_coord().second + 1 << std::endl;
+                        if(ptr[soldier->get_coord().first + k*row_inv][soldier->get_coord().second] != NULL)
+                        {
+                            if(typeid(*ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]) == typeid(barrier))
+                            {
+                                    flag = false;
+                                    break;
+                            }
+                            else if(ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->get_color() != soldier->get_color())
+                            {
+                                if(hit(soldier, distanse))
+                                {
+                                    ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->get_damage(soldier->getWeapon_damage());
+                                    if(!ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->is_alive())
+                                    {
+                                        ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second] = NULL;
+                                    }
+                                }
+                                flag = false;
+                                break;
+                            }
+                        }
+                        }
+
+                    }
+                    }
+                    if(flag)
+                    {
+                    for(int j = 1; j <= min_part; j++)
+                    {
+                        if(flag)
+                        {std::cout << soldier->get_coord().first  -j*row_inv + 1<< "    " << soldier->get_coord().second + (j + i - 1)*column_inv + 1 << std::endl;
+                        if(ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] != NULL)
+                        {
+                            if(typeid(*ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]) == typeid(barrier))
+                            {
+                                    flag = false;
+                                    break;
+                            }
+                            else if(ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_color() != soldier->get_color())
+                            {
+                                if(hit(soldier, distanse))
+                                {
+                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    if(!ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->is_alive())
+                                    {
+                                        ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] = NULL;
+                                    }
+                                }
+                                flag = false;
+                                break;
+                            }
+                        }
+                        }
+                    }
+                    }
+                    if(flag)
+                    {
+                    for(int m = 1; m <= distanse - i - min_part + 1; m++)
+                    {std::cout << soldier->get_coord().first  - (i + min_part - 1 + m)*row_inv +1 << "    " << soldier->get_coord().second + min_part*column_inv + 1 <<std::endl;
+                        if(flag)
+                        {
+                        if(ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv] != NULL)
+                        {
+                            if(typeid(*ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]) == typeid(barrier))
+                            {
+                                flag = false;
+                                break;
+                            }
+                            else if(ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->get_color() != soldier->get_color())
+                            {
+                                if(hit(soldier, distanse))
+                                {
+                                    ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->get_damage(soldier->getWeapon_damage());
+                                    if(!ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->is_alive())
+                                    {
+                                        ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv] = NULL;
+                                    }
+                                }
+                                flag = false;
+                                break;
+                            }
+                        }
+                        }
+                    }
+                    }
+
             }
         }
-    }
 
 
-
-
-    else if(typeid(*soldier) == typeid(stormtr))
-    {
-        for(int i = 0; i < soldier->getAmmo(); i++)
-        {
-        srand(time(NULL)+i);
-        if(ptr[temp1 - 1][temp2 - 1] != NULL)
-        {
-            if(typeid(*ptr[temp1 - 1][temp2 - 1]) != typeid(barrier))
-            {
-                if(hit(soldier, distanse) && soldier->get_color() != ptr[temp1 - 1][temp2 - 1]->get_color())
-                {
-                    ptr[temp1 - 1][temp2 - 1]->get_damage(soldier->getWeapon_damage());
-                    if(!ptr[temp1 - 1][temp2 - 1]->is_alive())
-                    {
-                        ptr[temp1 - 1][temp2 - 1] = NULL;
-                    }
-                }
-            }
-        }
-        }
-    }
-
-
-
-
-
-
-
-
-    else if(typeid(*soldier) == typeid(machinegun))
-    {
-
-    }
-    else if(typeid(*soldier) == typeid(gun))
-    {
-
-    }
 }
 
 
