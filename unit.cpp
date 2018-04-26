@@ -108,7 +108,6 @@ int Unit::choise(int menu_count, bool exit)
 
     else
         {
-                std::cin.ignore();
 
             do
                 {
