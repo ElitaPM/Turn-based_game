@@ -43,9 +43,9 @@ public:
     void set_coord(int first, int second);
     std::pair<int, int> get_coord();
 
-    void before(Unit* soldier);
-    int after (Unit* soldier);
-    void non_bonus (Unit* soldier);
+    void before();
+    int after ();
+    void non_bonus ();
 };
 
 #endif // UNIT_H

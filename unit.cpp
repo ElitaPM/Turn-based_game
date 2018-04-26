@@ -26,57 +26,57 @@ void Unit::showHP ()
         std::cout << "Юнит мертв";
 }
 
-void Unit::before(Unit* soldier)
+void Unit::before()
 {
-    if (soldier->get_unit_name() == "Автоматчик")
+    if (this->get_unit_name() == "Автоматчик")
     {
-        soldier->bonus();
+        this->bonus();
 //            std::cout << "Критический урон." << std::endl;
     }
-    if (soldier->get_unit_name() == "Дробовик")
+    if (this->get_unit_name() == "Дробовик")
     {
-        soldier->bonus();
+        this->bonus();
     }
 }
 
-void Unit::non_bonus(Unit* soldier)
+void Unit::non_bonus()
 {
-    if (soldier->get_unit_name() == "Автоматчик")
+    if (this->get_unit_name() == "Автоматчик")
     {
         Weapon_damage = 20;
     }
-    if (soldier->get_unit_name() == "Дробовик")
+    if (this->get_unit_name() == "Дробовик")
     {
         Weapon_damage = 200;
     }
 }
 
-int Unit::after(Unit *soldier)
+int Unit::after()
 {
-    if (soldier->get_unit_name() == "Снайпер")
+    if (this->get_unit_name() == "Снайпер")
     {
-        if (soldier->bonus() == true)
+        if (this->bonus() == true)
         {
 //            std::cout << "Второй выстрел." << std::endl;
             return 0;
         }
     }
-    if (soldier->get_unit_name() == "Автоматчик")
+    if (this->get_unit_name() == "Автоматчик")
     {
-        soldier->non_bonus(soldier);
+        this->non_bonus();
         return -1;
     }
-    if (soldier->get_unit_name() == "Пулеметчик")
+    if (this->get_unit_name() == "Пулеметчик")
     {
-        if (soldier->bonus() == true)
+        if (this->bonus() == true)
         {
 //            std::cout << "Второй ход." << std::endl;
             return 1;
         }
     }
-    if (soldier->get_unit_name() == "Дробовик")
+    if (this->get_unit_name() == "Дробовик")
     {
-        soldier->non_bonus(soldier);
+        this->non_bonus();
         return -1;
     }
 

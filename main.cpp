@@ -114,7 +114,7 @@ int main()
     cout << "Ход юнита Blue team " << blue_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[0]->get_coord().first + 1 << "," << blue_unit[0]->get_coord().second + 1 << ")"<< endl;
     field.move(blue_unit[0]);
-    if (blue_unit[0]->after(blue_unit[0]) == 1)
+    if (blue_unit[0]->after() == 1)
     {
         cout << "Второй ход." << endl;
         field.move(blue_unit[0]);
@@ -125,7 +125,7 @@ int main()
     cout << "Ход юнита Blue team " << blue_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[1]->get_coord().first + 1 << "," << blue_unit[1]->get_coord().second + 1 << ")"<< endl;
     field.move(blue_unit[1]);
-    if (blue_unit[1]->after(blue_unit[1]) == 1)
+    if (blue_unit[1]->after() == 1)
     {
         cout << "Второй ход." << endl;
         field.move(blue_unit[1]);
@@ -136,7 +136,7 @@ int main()
     cout << "Ход юнита Blue team " << blue_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[2]->get_coord().first + 1 << "," << blue_unit[2]->get_coord().second + 1 << ")"<< endl;
     field.move(blue_unit[2]);
-    if (blue_unit[2]->after(blue_unit[2]) == 1)
+    if (blue_unit[2]->after() == 1)
     {
         cout << "Второй ход." << endl;
         field.move(blue_unit[2]);
@@ -147,9 +147,9 @@ int main()
         {
     cout << "Выстрел юнита Yellow team " << yellow_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[0]->get_coord().first + 1 << "," << yellow_unit[0]->get_coord().second + 1 << ")"<< endl;
-    yellow_unit[0]->before(yellow_unit[0]);
+    yellow_unit[0]->before();
     field.shoot(yellow_unit[0]);
-    if (yellow_unit[0]->after(yellow_unit[0]) == 0)
+    if (yellow_unit[0]->after() == 0)
     {
         cout << "Второй выстрел." << endl;
         field.shoot(yellow_unit[0]);
@@ -159,9 +159,9 @@ int main()
         {
     cout << "Выстрел юнита Yellow team " << yellow_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[1]->get_coord().first + 1 << "," << yellow_unit[1]->get_coord().second + 1 << ")"<< endl;
-    yellow_unit[1]->before(yellow_unit[1]);
+    yellow_unit[1]->before();
     field.shoot(yellow_unit[1]);
-    if (yellow_unit[1]->after(yellow_unit[1]) == 0)
+    if (yellow_unit[1]->after() == 0)
     {
         cout << "Второй выстрел." << endl;
         field.shoot(yellow_unit[1]);
@@ -171,9 +171,9 @@ int main()
         {
     cout << "Выстрел юнита Yellow team " << yellow_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[2]->get_coord().first + 1 << "," << yellow_unit[2]->get_coord().second + 1 << ")"<< endl;
-    yellow_unit[2]->before(yellow_unit[2]);
+    yellow_unit[2]->before();
     field.shoot(yellow_unit[2]);
-    if (yellow_unit[2]->after(yellow_unit[2]) == 0)
+    if (yellow_unit[2]->after() == 0)
     {
         cout << "Второй выстрел." << endl;
         field.shoot(yellow_unit[2]);
@@ -195,7 +195,7 @@ int main()
     cout << "Ход юнита Yellow team " << yellow_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[0]->get_coord().first + 1 << "," << yellow_unit[0]->get_coord().second + 1 << ")"<< endl;
     field.move(yellow_unit[0]);
-    if (yellow_unit[0]->after(yellow_unit[0]) == 1)
+    if (yellow_unit[0]->after() == 1)
     {
         cout << "Второй ход." << endl;
         field.move(yellow_unit[0]);
@@ -206,7 +206,7 @@ int main()
     cout << "Ход юнита Yellow team " << yellow_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[1]->get_coord().first + 1 << "," << yellow_unit[1]->get_coord().second + 1 << ")"<< endl;
     field.move(yellow_unit[1]);
-    if (yellow_unit[1]->after(yellow_unit[1]) == 1)
+    if (yellow_unit[1]->after() == 1)
     {
         cout << "Второй ход." << endl;
         field.move(yellow_unit[1]);
@@ -217,7 +217,7 @@ int main()
     cout << "Ход юнита Yellow team " << yellow_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     yellow_unit[2]->get_coord().first + 1 << "," << yellow_unit[2]->get_coord().second + 1 << ")"<< endl;
     field.move(yellow_unit[2]);
-    if (yellow_unit[2]->after(yellow_unit[2]) == 1)
+    if (yellow_unit[2]->after() == 1)
     {
         cout << "Второй ход." << endl;
         field.move(yellow_unit[2]);
@@ -228,9 +228,9 @@ int main()
         {
     cout << "Выстрел юнита Blue team " << blue_unit[0]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[0]->get_coord().first + 1 << "," << blue_unit[0]->get_coord().second + 1 << ")"<< endl;
-    blue_unit[0]->before(blue_unit[0]);
+    blue_unit[0]->before();
     field.shoot(blue_unit[0]);
-    if (blue_unit[0]->after(blue_unit[0]) == 0)
+    if (blue_unit[0]->after() == 0)
     {
         cout << "Второй выстрел." << endl;
         field.shoot(blue_unit[0]);
@@ -240,9 +240,9 @@ int main()
         {
     cout << "Выстрел юнита Blue team " << blue_unit[1]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[1]->get_coord().first + 1 << "," << blue_unit[1]->get_coord().second + 1 << ")"<< endl;
-    blue_unit[1]->before(blue_unit[1]);
+    blue_unit[1]->before();
     field.shoot(blue_unit[1]);
-    if (blue_unit[1]->after(blue_unit[1]) == 0)
+    if (blue_unit[1]->after() == 0)
     {
         cout << "Второй выстрел." << endl;
         field.shoot(blue_unit[1]);
@@ -252,9 +252,9 @@ int main()
         {
     cout << "Выстрел юнита Blue team " << blue_unit[2]->get_unit_name() << " с координатами: " << "(" <<
     blue_unit[2]->get_coord().first + 1 << "," << blue_unit[2]->get_coord().second + 1 << ")"<< endl;
-    blue_unit[2]->before(blue_unit[2]);
+    blue_unit[2]->before();
     field.shoot(blue_unit[2]);
-    if (blue_unit[2]->after(blue_unit[2]) == 0)
+    if (blue_unit[2]->after() == 0)
     {
         cout << "Второй выстрел." << endl;
         field.shoot(blue_unit[2]);
