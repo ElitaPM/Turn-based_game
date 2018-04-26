@@ -345,14 +345,12 @@ void Field::move(Unit* soldier)
     do
         {
             if(i != 0)
-            {
                 std::cout << "Некорректный ход" << std::endl;
-            }
-            std::cout << "Введите строку: ";
-            std::cin >> temp1;
-            std::cout << "Введите столбец: ";
-            std::cin >> temp2;
-            i++;
+                std::cout << "Введите строку" << std::endl;
+                temp1 = Unit::choise(20);
+                std::cout << "Введите столбец" << std::endl;
+                temp2 = Unit::choise(20);
+                i++;
         }
     while((ptr[temp1 - 1][temp2 - 1] != NULL && (temp1 != temp.first + 1 || temp2 != temp.second + 1))
           || abs(temp.first - temp1 + 1) > 1 || abs(temp.second - temp2 + 1) > 1
@@ -391,9 +389,9 @@ void Field::shoot(Unit* soldier)
                 std::cout << "Некорректный выстрел" << std::endl;
             }
             std::cout << "Введите строку: ";
-            std::cin >> temp1;
+            temp1 = Unit::choise(20);
             std::cout << "Введите столбец: ";
-            std::cin >> temp2;
+            temp2 = Unit::choise(20);
             i++;
         }
     while(abs(soldier->get_coord().first - temp1) > soldier->getRange() || abs(soldier->get_coord().second - temp2) > soldier->getRange());

@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-    string ch;
+    int ch;
 
     while (1)
     {
@@ -18,18 +18,14 @@ int main()
         cout << "2. Справка." << endl;
         cout << "0. Выход." << endl;
 
-        cin >> ch;
+        ch = Unit::choise(2,0);
 
-        if (ch[0] != '1' && ch[0] != '2' && ch[0] != '0' || ch.length()>1 )
-        {
-            cout << "\x1B[2J\x1B[H";
-            cout << "Введите число от 0 до 2." << endl;
-            continue;
-        }
+        cout << "\x1B[2J\x1B[H";
 
-        switch (ch[0])
+
+        switch (ch)
         {
-           case '1':
+           case 1:
            {
                 cout << "\x1B[2J\x1B[H";
 
@@ -46,7 +42,7 @@ int main()
     int choise;
     cout << "Blue team " << endl;
     menu.units_choise();
-    cin >> choise;
+    choise = Unit::choise(20);
 
     switch (choise) {
         case 1: blue_unit[0] = &blue_sniper_1; blue_unit[1] = &blue_sniper_2; blue_unit[2] = &blue_sniper_3; break;
@@ -73,7 +69,7 @@ int main()
 
     cout << "Yellow team " << endl;
     menu.units_choise();
-    cin >> choise;
+    choise = Unit::choise(20);
 
     switch (choise) {
         case 1: yellow_unit[0] = &yellow_sniper_1; yellow_unit[1] = &yellow_sniper_2; yellow_unit[2] = &yellow_sniper_3; break;
@@ -138,8 +134,7 @@ int main()
             cout << "Использовать неуязвимость?" << endl;
             cout << "1. Да" << endl;
             cout << "2. Нет" << endl;
-            int choise;
-            cin >> choise;
+            choise = Unit::choise(2);
             switch (choise) {
             case 1: wb1.ability(blue_unit); blue_team_immortal = false; break;
             case 2: break;
@@ -207,8 +202,7 @@ int main()
                 cout << "Использовать неуязвимость?" << endl;
                 cout << "1. Да" << endl;
                 cout << "2. Нет" << endl;
-                int choise;
-                cin >> choise;
+                choise = Unit::choise(2);
                 switch (choise) {
                 case 1: wb2.ability(yellow_unit); yellow_team_immortal = false; break;
                 case 2: break;
@@ -254,7 +248,7 @@ int main()
 
     break;
                 }
-                case '2':
+                case 2:
                 {
                     cout << "\x1B[2J\x1B[H";
                     cout << "Правила игры." << endl;
@@ -270,7 +264,7 @@ int main()
 
                     break;
                 }
-                case '0':
+                case 0:
                 {
                     cout << "\x1B[2J\x1B[H";
                     exit(0);

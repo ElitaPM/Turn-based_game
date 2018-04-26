@@ -3,6 +3,7 @@
 #include <utility>
 #include <string>
 #include <iostream>
+#include <locale>
 
 
 
@@ -20,28 +21,28 @@ protected:
     std::pair <int, int> coord;
     std::string unit_name;
 public:
-    Unit(std::string color){this->color = color;}
-    std::string get_color(){return color;}
+    Unit(std::string color);
+    std::string get_color();
     std::string get_unit_name();
 
     void showHP ();
-    void get_damage(int Damage, bool desolator = true)
-    {
-        HP = HP - (Damage-((int)desolator)*Damage*armor/10);
-    }
+    void get_damage(int Damage, bool desolator = true);
+
     virtual bool bonus() = 0;
 
 
-    int getAmmo(){return Ammo;}
-    int getRange() {return Range;}
-    int getAccuracy() {return Accuracy;}
-    int getArmor() {return armor;}
-    int getWeapon_damage(){return Weapon_damage;}
+    int getAmmo();
+    int getRange();
+    int getAccuracy();
+    int getArmor();
+    int getWeapon_damage();
 
-    bool is_alive() { return HP > 0 ? true : false;}
+    bool is_alive();
     void set_coord(int first, int second);
     void set_armor(int armor);
     std::pair<int, int> get_coord();
+
+    static int choise(int menu_count, bool exit = true);
 
 };
 
