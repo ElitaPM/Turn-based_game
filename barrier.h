@@ -10,7 +10,7 @@ class Barrier: public Unit
 {
 public:
     Barrier(std::string color): Unit(color){}
-    void bonus(){}
+    bool bonus(){}
 };
 
 #endif // BARRIER_H

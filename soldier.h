@@ -4,7 +4,7 @@
 #include "unit.h"
 #include <string>
 #include <iostream>
-
+#include <time.h>
 
 
 class Sniper: public Unit
@@ -21,7 +21,7 @@ public:
         Accuracy = 100;
         unit_name = "Снайпер";
     }
-    void bonus() {}
+    bool bonus();// {}
 };
 
 class Stormtrooper: public Unit
@@ -38,7 +38,7 @@ public:
         Accuracy = 80;
         unit_name = "Автоматчик";
     }
-    void bonus() {}
+    bool bonus(); //{}
 };
 
 class MachineGunner: public Unit
@@ -55,7 +55,7 @@ public:
         Accuracy = 60;
         unit_name = "Пулеметчик";
     }
-    void bonus() {}
+    bool bonus(); //{}
 };
 
 class Shotgun: public Unit
@@ -72,7 +72,7 @@ public:
         Accuracy = 100;
         unit_name = "Дробовик";
     }
-    void bonus() {}
+    bool bonus(); // {}
 };
 
 #endif // SOLDIER_H

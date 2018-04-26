@@ -31,7 +31,7 @@ public:
     {
         HP = HP - (Damage-Damage*armor/10);
     }
-    virtual void bonus() = 0;
+    virtual bool bonus() = 0;
 
 
     int getAmmo(){return Ammo;}
@@ -42,6 +42,10 @@ public:
     bool is_alive() { return HP > 0 ? true : false;}
     void set_coord(int first, int second);
     std::pair<int, int> get_coord();
+
+    void before(Unit* soldier);
+    int after (Unit* soldier);
+    void non_bonus (Unit* soldier);
 };
 
 #endif // UNIT_H
