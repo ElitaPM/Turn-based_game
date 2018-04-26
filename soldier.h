@@ -17,7 +17,7 @@ public:
         armor = 0;
         Ammo = 1;
         Weapon_damage = 100;
-        Range = 12;
+        Range = 14;
         Bonus_chance = 10;
         Accuracy = 100;
         unit_name = "Снайпер";
@@ -34,7 +34,7 @@ public:
         armor = 3;
         Ammo = 10;
         Weapon_damage = 20;
-        Range = 10;
+        Range = 12;
         Bonus_chance = 20;
         Accuracy = 80;
         unit_name = "Автоматчик";

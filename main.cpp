@@ -130,6 +130,7 @@ int main()
     int blue_unit_1_armor = blue_unit[0]->getArmor();
     int blue_unit_2_armor = blue_unit[1]->getArmor();
     int blue_unit_3_armor = blue_unit[2]->getArmor();
+    int blue_base_armor = blue_base->getArmor();
         if(blue_team_immortal)
         {
             cout << "Использовать неуязвимость?" << endl;
@@ -137,7 +138,7 @@ int main()
             cout << "2. Нет" << endl;
             choise = Unit::choise(2);
             switch (choise) {
-            case 1: wb1.ability(blue_unit); blue_team_immortal = false; break;
+            case 1: wb1.ability(blue_unit, blue_base); blue_team_immortal = false; break;
             case 2: break;
             }
         }
@@ -160,7 +161,7 @@ int main()
     yellow_unit[2]->get_coord().first + 1 << "," << yellow_unit[2]->get_coord().second + 1 << ")"<< endl;
     field.shoot(yellow_unit[2]);
         }
-        if(blue_team_immortal)
+        if(!blue_team_immortal)
         {
             blue_unit[0]->set_armor(blue_unit_1_armor);
             blue_unit[1]->set_armor(blue_unit_2_armor);
@@ -198,6 +199,7 @@ int main()
         int yellow_unit_1_armor = yellow_unit[0]->getArmor();
         int yellow_unit_2_armor = yellow_unit[1]->getArmor();
         int yellow_unit_3_armor = yellow_unit[2]->getArmor();
+        int yellow_base_armor = yellow_base->getArmor();
             if(yellow_team_immortal)
             {
                 cout << "Использовать неуязвимость?" << endl;
@@ -205,7 +207,7 @@ int main()
                 cout << "2. Нет" << endl;
                 choise = Unit::choise(2);
                 switch (choise) {
-                case 1: wb2.ability(yellow_unit); yellow_team_immortal = false; break;
+                case 1: wb2.ability(yellow_unit, yellow_base); yellow_team_immortal = false; break;
                 case 2: break;
                 }
             }
@@ -229,7 +231,7 @@ int main()
     field.shoot(blue_unit[2]);
         }
 
-        if(yellow_team_immortal)
+        if(!yellow_team_immortal)
         {
             yellow_unit[0]->set_armor(yellow_unit_1_armor);
             yellow_unit[1]->set_armor(yellow_unit_2_armor);

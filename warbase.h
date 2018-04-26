@@ -15,7 +15,7 @@ public:
         unit_name = "Военная база";
     }
     bool bonus(){}
-    void ability(Unit **some_units);
+    void ability(Unit **some_units, Unit* base);
 };
 
 #endif // WARBASE_H

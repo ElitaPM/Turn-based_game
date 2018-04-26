@@ -433,6 +433,9 @@ void Field::shoot(Unit* soldier)
             {
                 critical = 1;
             }
+
+            bool desolator = soldier->get_unit_name() == "Дробовик";
+
             if(column == distanse || soldier->get_coord().first + 1 == temp1)
             {
                     bool flag = true;
@@ -453,7 +456,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
+                                    ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->get_damage(critical*soldier->getWeapon_damage(), !desolator);
                                     if(!ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first][soldier->get_coord().second + k*column_inv] = NULL;
@@ -484,7 +487,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
+                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), !desolator);
                                     if(!ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] = NULL;
@@ -514,7 +517,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
+                                    ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), !desolator);
                                     if(!ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - min_part*row_inv][soldier->get_coord().second + (i + min_part - 1 + m)*column_inv] = NULL;
@@ -551,7 +554,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
+                                    ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->get_damage(critical*soldier->getWeapon_damage(), !desolator);
                                     if(!ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - k*row_inv][soldier->get_coord().second] = NULL;
@@ -582,7 +585,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
+                                    ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->get_damage(critical*soldier->getWeapon_damage(), !desolator);
                                     if(!ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - j*row_inv][soldier->get_coord().second + (j + i - 1)*column_inv] = NULL;
@@ -612,7 +615,7 @@ void Field::shoot(Unit* soldier)
                             {
                                 if(hit(soldier, distanse))
                                 {
-                                    ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->get_damage(critical*soldier->getWeapon_damage(), soldier->get_unit_name()!= "Дробовик");
+                                    ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->get_damage(critical*soldier->getWeapon_damage(), !desolator);
                                     if(!ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv]->is_alive())
                                     {
                                         ptr[soldier->get_coord().first - (i + min_part - 1 + m)*row_inv][soldier->get_coord().second + min_part*column_inv] = NULL;
