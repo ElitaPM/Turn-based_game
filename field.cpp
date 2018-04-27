@@ -346,9 +346,9 @@ void Field::move(Unit* soldier)
         {
             if(i != 0)
                 std::cout << "Некорректный ход" << std::endl;
-                std::cout << "Введите строку" << std::endl;
+                std::cout << "Введите строку: ";
                 temp1 = Unit::choise(20);
-                std::cout << "Введите столбец" << std::endl;
+                std::cout << "Введите столбец: ";
                 temp2 = Unit::choise(20);
                 i++;
         }
